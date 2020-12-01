@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # atualiza a lista de repositorios
 sudo apt-get update
 

@@ -42,28 +42,3 @@ lsmod | grep br_netfilter
 # habilita o servico kubelet
 sudo systemctl start kubelet
 sudo systemctl enable kubelet
-
-# Pull container images
-sudo kubeadm config images pull
-
-# inicia o cluster kubernetes 
-# rede 10.244.0.0/16 padrao do flannel
-sudo kubeadm init --pod-network-cidr=10.244.0.0/16
-
-# configura o kubectl usando os comandos do outup
-mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
-# verifica o status do cluster
-kubectl cluster-info
-
-# instala o plugin flannel para gerenciar a rede de overlay no Kubernetes
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-
-# verifica os pods core do kubernets
-kubectl get pods --all-namespaces
-
-# verifica se o no master esta pronto
-kubectl get nodes -o wide
-
