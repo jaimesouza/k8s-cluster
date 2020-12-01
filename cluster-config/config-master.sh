@@ -67,3 +67,12 @@ kubectl get pods --all-namespaces
 # verifica se o no master esta pronto
 kubectl get nodes -o wide
 
+# abre as permissoes de acesso as portas na nuvem da oracle
+sudo iptables -L
+sudo iptables-save > ~/iptables-rules
+sudo iptables -P INPUT ACCEPT
+sudo iptables -P OUTPUT ACCEPT
+sudo iptables -P FORWARD ACCEPT
+sudo iptables -F
+sudo iptables --flush
+

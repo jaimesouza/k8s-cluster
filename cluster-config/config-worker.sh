@@ -4,7 +4,7 @@
 sudo apt update
 sudo apt upgrade -y
 
-# adiciona o repositorio do  Kubernetes para o Ubuntu 20.04
+# adiciona o repositorio do Kubernetes para o Ubuntu 20.04
 sudo apt update
 sudo apt -y install curl apt-transport-https
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
@@ -42,3 +42,12 @@ lsmod | grep br_netfilter
 # habilita o servico kubelet
 sudo systemctl start kubelet
 sudo systemctl enable kubelet
+
+# abre as permissoes de acesso as portas na nuvem da oracle
+sudo iptables -L
+sudo iptables-save > ~/iptables-rules
+sudo iptables -P INPUT ACCEPT
+sudo iptables -P OUTPUT ACCEPT
+sudo iptables -P FORWARD ACCEPT
+sudo iptables -F
+sudo iptables --flush
