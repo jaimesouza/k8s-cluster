@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# build image from dockerfile
+# build image from Dockerfile
 docker build -t kvs .
 
 # tag the image
